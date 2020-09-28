@@ -6,7 +6,7 @@ use App\Repository\CommonRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=CommonRepository::class)
+ * @ORM\MappedSuperclass
  */
 abstract class Common
 {
@@ -15,17 +15,17 @@ abstract class Common
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $nom;
+    protected $nom;
 
     /**
-     * @ORM\OneToOne(targetEntity=Image::class, inversedBy="common", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Image::class, cascade={"persist", "remove"})
      */
-    private $image;
+    protected $image;
 
     public function getId(): ?int
     {

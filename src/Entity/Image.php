@@ -22,11 +22,6 @@ class Image
      */
     private $nom;
 
-    /**
-     * @ORM\OneToOne(targetEntity=Common::class, mappedBy="image", cascade={"persist", "remove"})
-     */
-    private $common;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -44,21 +39,4 @@ class Image
         return $this;
     }
 
-    public function getCommon(): ?Common
-    {
-        return $this->common;
-    }
-
-    public function setCommon(?Common $common): self
-    {
-        $this->common = $common;
-
-        // set (or unset) the owning side of the relation if necessary
-        $newImage = null === $common ? null : $this;
-        if ($common->getImage() !== $newImage) {
-            $common->setImage($newImage);
-        }
-
-        return $this;
-    }
 }
